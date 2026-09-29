@@ -1,0 +1,75 @@
+{
+  "labelTheme": {
+    "type": "label",
+    "value": "Appearance & Layout"
+  },
+  "themeStyle": {
+    "type": "dropdown",
+    "value": 0,
+    "text": "Player Style",
+    "items": [
+      "Modern Card (Default)",
+      "Classic Minimal (Original)"
+    ]
+  },
+  "showBackgroundShader": {
+    "type": "checkbox",
+    "value": true,
+    "text": "Fluid Aurora Shader"
+  },
+  "labelSpectrum": {
+    "type": "label",
+    "value": "Spectrum settings"
+  },
+  "visualizerStyle": {
+    "type": "dropdown",
+    "value": 0,
+    "text": "Visualizer Style",
+    "items": [
+      "Centered Bars",
+      "Floating Dots"
+    ]
+  },
+  "useAlbumColorForVis": {
+    "type": "checkbox",
+    "value": true,
+    "text": "Sync Spectrum with Album Color"
+  },
+  "verticalScale": {
+    "max": 50,
+    "min": 0,
+    "tick": 8,
+    "step": 0.1,
+    "text": "Amplitude",
+    "type": "slider",
+    "value": 8
+  },
+  "dotScale": {
+    "max": 5,
+    "min": 0,
+    "tick": 1,
+    "step": 0.1,
+    "text": "Bar / Dot Width",
+    "type": "slider",
+    "value": 1.0
+  },
+  "sortingMode": {
+    "type": "dropdown",
+    "value": 2,
+    "text": "Spectrum mode",
+    "items": [
+      "Concentrated",
+      "Center-split",
+      "Keep original"
+    ]
+  },
+  "labelBackground": {
+    "type": "label",
+    "value": "Background settings"
+  },
+  "parallaxToggle": {
+    "type": "checkbox",
+    "value": false,
+    "text": "Parallax Effect"
+  }
+}

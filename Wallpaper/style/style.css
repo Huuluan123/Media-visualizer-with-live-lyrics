@@ -1,0 +1,321 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #050507;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* =========================================
+   1. FLUID SHADER BACKGROUND
+   ========================================= */
+.fluid-background {
+  position: absolute;
+  inset: -25%;
+  filter: blur(100px);
+  z-index: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  animation: floatOrb 18s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, var(--primary-color, rgba(120, 150, 255, 0.45)), transparent 70%);
+  top: 5%;
+  left: 15%;
+  transition: background 1s ease;
+}
+
+.orb-2 {
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--secondary-color, rgba(255, 90, 160, 0.4)), transparent 70%);
+  bottom: 5%;
+  right: 15%;
+  animation-duration: 22s;
+  animation-direction: alternate-reverse;
+  transition: background 1s ease;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -50px) scale(1.12); }
+  100% { transform: translate(-50px, 40px) scale(0.92); }
+}
+
+/* =========================================
+   2. SPECTRUM CANVAS & KHỐI TRUNG TÂM
+   ========================================= */
+#visualizer-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.player-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.1s ease-out;
+}
+
+.track-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  max-width: 420px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.track-artist {
+  color: var(--text-accent, rgba(255, 255, 255, 0.65));
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 22px;
+  max-width: 380px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.8s ease;
+}
+
+/* =========================================
+   3. THANH TIẾN TRÌNH SPOTIFY / YOUTUBE
+   ========================================= */
+.progress-container {
+  width: 360px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  overflow: visible !important;
+  transition: height 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Khi rê chuột hoặc kéo: thanh dày lên nhẹ */
+.progress-container:hover .progress-bar-bg,
+.progress-container.dragging .progress-bar-bg {
+  height: 8px;
+}
+
+/* Vệt sáng xem trước mờ ảo khi di chuột */
+.progress-bar-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.progress-container:hover .progress-bar-hover,
+.progress-container.dragging .progress-bar-hover {
+  opacity: 1;
+}
+
+/* Thanh bài hát đang phát thực tế */
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 3;
+  transition: width 0.08s linear;
+}
+
+/* Núm tròn Scrubber Thumb: cố định ở cuối thanh trắng */
+.seek-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 14px;
+  height: 14px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 4;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  opacity: 0;
+}
+
+/* Khi rê chuột hoặc đang kéo: núm tròn bung to tại đúng mốc phát hiện tại */
+.progress-container:hover .seek-thumb,
+.progress-container.dragging .seek-thumb {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.time-stamps {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================
+   4. CỤM NÚT MEDIA
+   ========================================= */
+.media-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 22px;
+  z-index: 5;
+}
+
+.control-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.control-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.1);
+}
+
+.control-btn:active {
+  transform: scale(0.92);
+}
+
+.btn-main {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+}
+
+.btn-main:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+.current-lyric {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #ffffff;
+  min-height: 2.2em;
+  line-height: 1.4;
+  max-width: 85vw;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* =========================================
+   5. GIAO DIỆN THEME: MODERN vs CLASSIC
+   ========================================= */
+body.theme-modern .album-art-wrapper {
+  width: 250px;
+  height: 250px;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.14);
+  margin-bottom: 22px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+body.theme-modern .album-art-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body.theme-modern .progress-container {
+  display: flex;
+  flex-direction: column;
+}
+
+body.theme-modern .media-controls {
+  display: flex;
+}
+
+body.theme-classic .album-art-wrapper {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+  transition: transform 0.4s ease;
+}
+
+body.theme-classic .album-art-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body.theme-classic .progress-container,
+body.theme-classic .media-controls {
+  display: none !important;
+}
+
+body.theme-classic .fluid-background {
+  opacity: 0.12;
+}

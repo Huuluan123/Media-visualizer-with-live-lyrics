@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Parallax Wallpaper</title>
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body class="theme-modern">
+  <div class="fluid-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <canvas id="visualizer-canvas"></canvas>
+
+  <div class="player-container">
+    <div class="album-art-wrapper">
+      <img id="album-art" src="" alt="Album Art" />
+    </div>
+
+    <div class="track-details">
+      <div id="track-title" class="track-title">Waiting for music...</div>
+      <div id="track-artist" class="track-artist">Unknown Artist</div>
+    </div>
+
+    <!-- Thanh tiến trình YouTube/Spotify tương tác -->
+    <div class="progress-container">
+      <div class="progress-bar-bg" id="progress-bar-bg">
+        <div id="progress-bar-hover" class="progress-bar-hover"></div>
+        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        <div id="seek-thumb" class="seek-thumb"></div>
+      </div>
+      <div class="time-stamps">
+        <span id="current-time">0:00</span>
+        <span id="total-duration">0:00</span>
+      </div>
+    </div>
+
+    <!-- Cụm nút điều khiển Media -->
+    <div class="media-controls">
+      <button class="control-btn" id="btn-prev" title="Previous">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+        </svg>
+      </button>
+
+      <button class="control-btn btn-main" id="btn-play-pause" title="Play/Pause">
+        <svg id="icon-play" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="icon-pause" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" style="display: none;">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+
+      <button class="control-btn" id="btn-next" title="Next">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="current-lyric" class="current-lyric"></div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/color-thief.umd.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
