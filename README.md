@@ -2,8 +2,6 @@
 
 A modern, dynamic music wallpaper for **Lively Wallpaper** featuring real-time lyric synchronization, adaptive album colors, an interactive YouTube-style seek bar, and customizable audio spectrum visualizers.
 
-Inspired by **Apple Music** and **Samsung One UI**.
-
 ---
 
 ## ✨ Features
