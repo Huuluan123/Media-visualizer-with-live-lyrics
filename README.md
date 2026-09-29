@@ -42,5 +42,15 @@ dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true
 
 ---
 
+## 🚀 Installation
+
+1. Download the latest `LivelyMusicVisualizer.livelyzip` from the **Releases** tab.
+2. Drag and drop the `.livelyzip` file into the **Lively Wallpaper** window.
+3. Right-click the wallpaper in Lively and select **Open File Location**.
+4. Run `Install.bat` once to register and start the `MediaTimelineBridge` background service.
+5. Play music on Spotify, Apple Music, or your browser to enjoy the synced visualizer!
+
+> **To uninstall:** Simply open the file location and run `Uninstall.bat` before removing the wallpaper from Lively.
+
 ## 📄 License
 This project is open source and available under the [MIT License](LICENSE).
