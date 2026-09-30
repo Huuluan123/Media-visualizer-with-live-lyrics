@@ -4,6 +4,14 @@ A modern, dynamic music wallpaper for **Lively Wallpaper** featuring real-time l
 
 <img width="1917" height="1078" alt="Screenshot 2026-09-29 223834" src="https://github.com/user-attachments/assets/48b66e42-41ad-4679-aee3-a067d04a3e16" />
 
+
+
+<img width="800" height="450" 
+     alt="2026-09-3010-37-15-ezgif com-video-to-gif-converter" 
+     src="https://github.com/user-attachments/assets/f2d6d03a-3172-482d-a411-b3e61e792615" 
+     style="display: block; margin: 0 auto;" align = "center"/>
+
+
 ---
 
 ## ✨ Features
