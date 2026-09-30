@@ -1,6 +1,8 @@
-# Lively Music Visualizer & Parallax Player
+# Lively Music Visualizer with Live Lyrics
 
 A modern, dynamic music wallpaper for **Lively Wallpaper** featuring real-time lyric synchronization, adaptive album colors, an interactive YouTube-style seek bar, and customizable audio spectrum visualizers.
+
+<img width="1917" height="1078" alt="Screenshot 2026-09-29 223834" src="https://github.com/user-attachments/assets/48b66e42-41ad-4679-aee3-a067d04a3e16" />
 
 ---
 
