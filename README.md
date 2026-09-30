@@ -1,8 +1,16 @@
-# Lively Music Visualizer & Parallax Player
+# Lively Music Visualizer with Live Lyrics
 
 A modern, dynamic music wallpaper for **Lively Wallpaper** featuring real-time lyric synchronization, adaptive album colors, an interactive YouTube-style seek bar, and customizable audio spectrum visualizers.
 
-Inspired by **Apple Music** and **Samsung One UI**.
+<img width="1917" height="1078" alt="Screenshot 2026-09-29 223834" src="https://github.com/user-attachments/assets/48b66e42-41ad-4679-aee3-a067d04a3e16" />
+
+
+
+<img width="800" height="450" 
+     alt="2026-09-3010-37-15-ezgif com-video-to-gif-converter" 
+     src="https://github.com/user-attachments/assets/f2d6d03a-3172-482d-a411-b3e61e792615" 
+     style="display: block; margin: 0 auto;" align = "center"/>
+
 
 ---
 
@@ -41,6 +49,16 @@ dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true
 4. Play any track on Spotify, Apple Music, or your browser.
 
 ---
+
+## 🚀 Installation
+
+1. Download the latest `LivelyMusicVisualizer.livelyzip` from the **Releases** tab.
+2. Drag and drop the `.livelyzip` file into the **Lively Wallpaper** window.
+3. Right-click the wallpaper in Lively and select **Open File Location**.
+4. Run `Install.bat` once to register and start the `MediaTimelineBridge` background service.
+5. Play music on Spotify, Apple Music, or your browser to enjoy the synced visualizer!
+
+> **To uninstall:** Simply open the file location and run `Uninstall.bat` before removing the wallpaper from Lively.
 
 ## 📄 License
 This project is open source and available under the [MIT License](LICENSE).
